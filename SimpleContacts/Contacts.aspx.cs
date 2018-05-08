@@ -17,7 +17,9 @@ namespace SimpleContacts
         protected void SearchButton_Click(object sender, EventArgs e)
         {
 
-        
+            SqlDataSource1.SelectCommand = "SELECT * FROM Contacts WHERE LastName LIKE '%" + SearchBox.Text + "%' OR FirstName LIKE '%" + SearchBox.Text + "%'";
+
+           
         }
 
         protected void AddButton(object sender, EventArgs e)

@@ -25,7 +25,7 @@
 
     <div class="jumbotron">
         <h1>SimpleContacts</h1>
-        <asp:Label ID="SearchContacts" runat="server" Text="Search"></asp:Label>
+        <asp:Label ID="SearchContacts" runat="server" Text="Search First or Last Name:"></asp:Label>
         <asp:TextBox ID="SearchBox" runat="server"></asp:TextBox>
         <asp:Button ID="SearchButton" runat="server" Text="Submit" OnClick="SearchButton_Click" />
         <br />
