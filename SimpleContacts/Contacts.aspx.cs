@@ -13,5 +13,16 @@ namespace SimpleContacts
         {
 
         }
+
+        protected void SearchButton_Click(object sender, EventArgs e)
+        {
+
+        
+        }
+
+        protected void AddButton(object sender, EventArgs e)
+        {
+            Response.Redirect("AddEditPage.aspx?ID=" + "new");
+        }
     }
 }

@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddEditPage.aspx" />
     <Content Include="App_Data\SimpleContacts.mdf" />
     <Content Include="App_Data\SimpleContacts_log.ldf">
       <DependentUpon>SimpleContacts.mdf</DependentUpon>
@@ -181,6 +182,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEditPage.aspx.cs">
+      <DependentUpon>AddEditPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddEditPage.aspx.designer.cs">
+      <DependentUpon>AddEditPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contacts.aspx.cs">

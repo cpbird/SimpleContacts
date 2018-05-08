@@ -4,6 +4,13 @@
 
     <div class="jumbotron">
         <h1>SimpleContacts</h1>
+        <asp:Label ID="SearchContacts" runat="server" Text="Search"></asp:Label>
+        <asp:TextBox ID="SearchBox" runat="server"></asp:TextBox>
+        <asp:Button ID="SearchButton" runat="server" Text="Submit" OnClick="SearchButton_Click" />
+        <br />
+        <asp:Button ID="AddButtonID" runat="server" OnClick="AddButton" Text="Add" />
+        <br />
+
         <p class="lead">
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ContactID" DataSourceID="SqlDataSource1">
                 <Columns>
@@ -19,7 +26,7 @@
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Contacts]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ></asp:SqlDataSource>
         </p>
     </div>
 
