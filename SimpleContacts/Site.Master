@@ -47,7 +47,12 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">SimpleContacts</a>
                 </div>
+                 <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Contacts">Contacts</a></li>
+                            </ul>
                 </div>
+            </div>
             </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
