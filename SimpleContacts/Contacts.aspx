@@ -2,10 +2,19 @@
 <script runat="server">
  private void OnDSUpdatedHandler(Object source, SqlDataSourceStatusEventArgs e) {
     if (e.AffectedRows > 0) {
-        // Perform any additional processing,
-        // such as setting a status label after the operation.
         Label1.Text = Request.LogonUserIdentity.Name +
-            " changed user information successfully!";
+            " Changed contact information sucessfully!";
+    }
+    else {
+        Label1.Text = "No data updated!";
+    }
+ }
+</script>
+<script runat="server">
+ private void OnDSDeletedHandler(Object source, SqlDataSourceStatusEventArgs e) {
+    if (e.AffectedRows > 0) {
+        Label1.Text = Request.LogonUserIdentity.Name +
+            " Contact Deleted!";
     }
     else {
         Label1.Text = "No data updated!";
@@ -27,6 +36,7 @@
             <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
                 <Columns>
                     <asp:CommandField ShowEditButton="True" />
+                    <asp:CommandField ShowDeleteButton="True" />
                     <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
                     <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
                     <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
@@ -38,14 +48,15 @@
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [Contacts]"
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" 
+                SelectCommand="SELECT * FROM Contacts"
                 UpdateCommand="Update Contacts SET FirstName=@FirstName, LastName=@LastName, Note=@Note, StreetAddress=@StreetAddress, 
                 CityAddress=@CityAddress, StateAddress=@StateAddress, ZipAddress=@ZipAddress, Email=@Email, Phone=@Phone WHERE ContactID=@ContactID"
-                 OnUpdated="OnDSUpdatedHandler">
+                 OnUpdated="OnDSUpdatedHandler"
+                DeleteCommand="DELETE FROM Contacts WHERE ContactID=@ContactID"
+                OnDeleted="OnDSDeletedHandler">
             </asp:SqlDataSource>
-            <asp:Label
-          id="Label1"
-          runat="server">
+            <asp:Label id="Label1" runat="server">
       </asp:Label>
         </p>
     </div>
