@@ -13,7 +13,7 @@
     <p>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:HyperLinkField DataTextField="GroupDescription" HeaderText="Group" DataNavigateUrlFields="GroupDescription" DataNavigateUrlFormatString="Members.aspx?GroupId={0}" />
+                <asp:HyperLinkField DataTextField="GroupDescription" HeaderText="Group" DataNavigateUrlFields="GroupId" DataNavigateUrlFormatString="Members.aspx?GroupId={0}" />
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT * FROM [Groups]"></asp:SqlDataSource>
