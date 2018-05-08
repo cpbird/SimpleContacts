@@ -13,20 +13,21 @@ namespace SimpleContacts
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string newContact = (Request.QueryString["ID"] != null) ? Request.QueryString["ID"] : "";
+            
         }
 
         protected void SaveContact_Click(object sender, EventArgs e)
         {
-            string command = "INSERT INTO Contacts([FirstName],[LastName],[Note], [StreetAddress], [CityAddress], [StateAddress], [ZipAddress], [Email],[Phone]) values(@FirstName, @LastName, @Note,@StreetAddress, @CityAddress, @StateAddress, @ZipAddress,@Email,@Phone)";
+            string command = "INSERT INTO Contacts([FirstName],[LastName],[Note], [StreetAddress], [CityAddress], [StateAddress], [ZipAddress], [Email],[Phone]) " +
+                "values(@FirstName, @LastName, @Note,@StreetAddress, @CityAddress, @StateAddress, @ZipAddress,@Email,@Phone)";
 
-            var cnnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-            using (SqlConnection cnn = new SqlConnection(cnnString))
+            using (SqlConnection connect = new SqlConnection(connectionString))
             {
 
 
-                using (SqlCommand cmd = new SqlCommand(command, cnn))
+                using (SqlCommand cmd = new SqlCommand(command, connect))
                 {
 
 
@@ -39,9 +40,9 @@ namespace SimpleContacts
                     cmd.Parameters.AddWithValue("@ZipAddress", ZipID.Text);
                     cmd.Parameters.AddWithValue("@Email", EmailID.Text);
                     cmd.Parameters.AddWithValue("@Phone", PhoneID.Text);
-                    cnn.Open();
+                    connect.Open();
                     cmd.ExecuteNonQuery();
-                    cnn.Close();
+                    connect.Close();
                 }
 
 

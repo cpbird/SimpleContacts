@@ -9,5 +9,5 @@
 	[StateAddress] VARCHAR (2) NULL,
 	[ZipAddress] VARCHAR (10) NULL,
 	[Email] NVARCHAR (128) NULL,
-	[Phone] INT NULL
-	)
+	[Phone] NVARCHAR(10) NULL
+)
