@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Members.aspx.cs" Inherits="SimpleContacts.Members" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>SimpleContacts</h1>
+
     <p>Groups Members:</p>
     <p>
         &nbsp;</p>
@@ -34,7 +33,7 @@
     <br />
     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="ContactID" DataSourceID="SqlDataSource2" >
         <Columns>
-            <asp:ButtonField Text="Button" CommandName="Select"  />
+            <asp:ButtonField Text="Button" CommandName="Update"   />
             <asp:BoundField DataField="ContactID" HeaderText="ContactID" InsertVisible="False" ReadOnly="True" SortExpression="ContactID" />
             <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
             <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
@@ -48,7 +47,8 @@
             <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [Contacts]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [Contacts]"
+        UpdateCommand="UPDATE Contacts SET GroupId=@GroupId WHERE ContactId=@ContactId"></asp:SqlDataSource>
        
     <br />
     <br />

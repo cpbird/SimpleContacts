@@ -13,7 +13,7 @@ namespace SimpleContacts
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+             string GroupId = Request.QueryString["GroupId"];
         }
 
 
