@@ -1,12 +1,8 @@
 ﻿<%-- 
     This web form displays an add and search function button as well as shows the current database contents of your contact list using gridview.
-    The add button redirects from this form to a new form called "AddEditPage.aspx". The search function grabs the text in the search text field
-    and uses a button handler in the code behind to change gridviews select statement. It will return the contact rows
-    when part of, or the whole, first name or last name is entered.
-
-    Updating/Deleting is done using sqldatasource.
-
-    More specific info below. 
+    The add button redirects from this form to a new form called "AddEditPage.aspx". The search function uses a button handler 
+    in the code behind to change gridviews select statement. It will return the contact rows when part of, or the whole, first name 
+    or last name is entered.
 --%>
 
 

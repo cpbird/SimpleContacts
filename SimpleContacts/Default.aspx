@@ -1,7 +1,6 @@
 ﻿<%--  Web forms in visual studio generate a default form that is used as the start page. 
-    I have deleted most of the template html formatting and added a simple title and description
-    of this application.
-    
+    I have deleted most of the template formatting and added a simple title and description
+    of this application. 
     --%>
 
 <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="SimpleContacts._Default" %>
