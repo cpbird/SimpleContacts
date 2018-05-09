@@ -1,25 +1,48 @@
-﻿<%@ Page Title="Contacts" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contacts.aspx.cs" Inherits="SimpleContacts.Contacts" %>
+﻿<%-- 
+    This web form displays an add and search function button as well as shows the current database contents of your contact list using gridview.
+    The add button redirects from this form to a new form called "AddEditPage.aspx". The search function grabs the text in the search text field
+    and uses a button handler in the code behind to change gridviews select statement. It will return the contact rows
+    when part of, or the whole, first name or last name is entered.
+
+    Updating/Deleting is done using sqldatasource.
+
+    More specific info below. 
+--%>
+
+
+<%@ Page Title="Contacts" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contacts.aspx.cs" Inherits="SimpleContacts.Contacts" %>
+
+<%-- 
+    The following two scripts use sqldatasource event handlers to determine if the database completed its operation.
+    SqlDataSourceStatusEventArgs has a property AffectedRows to return how many rows are affected by a database operation. 
+--%>
 <script runat="server">
- private void OnDSUpdatedHandler(Object source, SqlDataSourceStatusEventArgs e) {
-    if (e.AffectedRows > 0) {
-        Label1.Text = Request.LogonUserIdentity.Name +
-            " Changed contact information sucessfully!";
+    private void OnDSUpdatedHandler(Object source, SqlDataSourceStatusEventArgs e)
+    {
+        if (e.AffectedRows > 0)
+        {
+            Label1.Text = Request.LogonUserIdentity.Name +
+                " Changed contact information sucessfully!";
+        }
+        else
+        {
+            Label1.Text = "No data updated!";
+        }
     }
-    else {
-        Label1.Text = "No data updated!";
-    }
- }
 </script>
 <script runat="server">
- private void OnDSDeletedHandler(Object source, SqlDataSourceStatusEventArgs e) {
-    if (e.AffectedRows > 0) {
-        Label1.Text = Request.LogonUserIdentity.Name +
-            " Contact Deleted!";
+    private void OnDSDeletedHandler(Object source, SqlDataSourceStatusEventArgs e)
+    {
+        if (e.AffectedRows > 0)
+        {
+            Label1.Text = Request.LogonUserIdentity.Name +
+                " Contact Deleted!";
+        }
+        else
+        {
+            Label1.Text = "No data updated!";
+        }
     }
-    else {
-        Label1.Text = "No data updated!";
-    }
- }
 </script>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -27,22 +50,25 @@
         <h1>SimpleContacts</h1>
         <asp:Label ID="SearchContacts" runat="server" Text="Search First or Last Name:"></asp:Label>
         <asp:TextBox ID="SearchBox" runat="server"></asp:TextBox>
-        <asp:Button ID="SearchButton" runat="server" Text="Submit" OnClick="SearchButton_Click" />
+        <asp:Button ID="SearchButton" runat="server" Text="Submit" OnClick="SearchButton_Click" /><%--Code behind changes select statement of gridview, uses LIKE--%>
         <br />
         <asp:Button ID="AddButtonID" runat="server" OnClick="AddButton" Text="Add" />
+        <%-- Code behind redirects to AddEditPage form --%>
         <br />
 
         <p class="lead">
-            <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None"  Width="100%" CssClass="myGrid" >
-                <AlternatingRowStyle BackColor="White"/>
+
+            <%--Any template fields were generated in order for validation to occur --%>
+            <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" CssClass="myGrid">
+                <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:TemplateField ShowHeader="False">
                         <EditItemTemplate>
-                            
+
                             <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
                             &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
                         </EditItemTemplate>
-                        
+
                         <ItemTemplate>
                             <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" Width="5%"></asp:LinkButton>
                         </ItemTemplate>
@@ -53,22 +79,22 @@
                         </ItemTemplate>
                         <ItemStyle Width="5%" />
                     </asp:TemplateField>
-                    <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" ItemStyle-Width="10%" >
-<ItemStyle Width="10%"></ItemStyle>
+                    <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" ItemStyle-Width="10%">
+                        <ItemStyle Width="10%"></ItemStyle>
                     </asp:BoundField>
-                    <asp:BoundField DataField="LastName" HeaderText="Last" SortExpression="LastName" ItemStyle-Width="10%" >
-                    
-<ItemStyle Width="10%"></ItemStyle>
+                    <asp:BoundField DataField="LastName" HeaderText="Last" SortExpression="LastName" ItemStyle-Width="10%">
+
+                        <ItemStyle Width="10%"></ItemStyle>
                     </asp:BoundField>
-                    
+
                     <asp:BoundField DataField="StreetAddress" HeaderText="Street Address" SortExpression="StreetAddress" ItemStyle-Width="30%">
-<ItemStyle Width="30%"></ItemStyle>
+                        <ItemStyle Width="30%"></ItemStyle>
                     </asp:BoundField>
                     <asp:BoundField DataField="CityAddress" HeaderText="City" SortExpression="CityAddress" ItemStyle-Width="5%">
-<ItemStyle Width="5%"></ItemStyle>
+                        <ItemStyle Width="5%"></ItemStyle>
                     </asp:BoundField>
                     <asp:BoundField DataField="StateAddress" HeaderText="State" SortExpression="StateAddress" ItemStyle-Width="5%">
-<ItemStyle Width="5%"></ItemStyle>
+                        <ItemStyle Width="5%"></ItemStyle>
                     </asp:BoundField>
                     <asp:TemplateField HeaderText="Zip Code" SortExpression="ZipAddress">
                         <EditItemTemplate>
@@ -90,7 +116,7 @@
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                         </ItemTemplate>
 
-<ItemStyle Width="10%"></ItemStyle>
+                        <ItemStyle Width="10%"></ItemStyle>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Phone" SortExpression="Phone">
                         <EditItemTemplate>
@@ -103,7 +129,7 @@
                         <ItemStyle Width="10%" />
                     </asp:TemplateField>
                     <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" ItemStyle-Width="10%">
-<ItemStyle Width="10%"></ItemStyle>
+                        <ItemStyle Width="10%"></ItemStyle>
                     </asp:BoundField>
                 </Columns>
                 <EditRowStyle BackColor="#7C6F57" />
@@ -124,17 +150,16 @@
         </p>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
         <p>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" 
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>"
                 SelectCommand="SELECT * FROM Contacts"
                 UpdateCommand="Update Contacts SET FirstName=@FirstName, LastName=@LastName, Note=@Note, StreetAddress=@StreetAddress, 
                 CityAddress=@CityAddress, StateAddress=@StateAddress, ZipAddress=@ZipAddress, Email=@Email, Phone=@Phone WHERE ContactID=@ContactID"
-                 OnUpdated="OnDSUpdatedHandler"
+                OnUpdated="OnDSUpdatedHandler"
                 DeleteCommand="DELETE FROM Contacts WHERE ContactID=@ContactID"
-                OnDeleted="OnDSDeletedHandler">
-            </asp:SqlDataSource>
-            <asp:Label id="Label1" runat="server">
-      </asp:Label>
+                OnDeleted="OnDSDeletedHandler"></asp:SqlDataSource>
+            <asp:Label ID="Label1" runat="server">
+            </asp:Label>
         </p>
     </div>
 
-    </asp:Content>
+</asp:Content>

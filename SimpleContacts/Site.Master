@@ -1,4 +1,12 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SimpleContacts.SiteMaster" %>
+﻿<%--
+    This is the master page used for the other web forms in this application. It was generated through the web page template option available
+    in visual studio. The navbar- header has been changed to the name of this application. All of the list items were removed, one list item
+    was placed in the navbar-right that is called Contacts with a hyperlink reference to the web form called contacts. A footer with the year,
+    the application name, and my name was also added to the template. 
+    
+    The bootstrap.css and  Site.css were only slightly modified. Most of the defaults styles are being used.
+    --%>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SimpleContacts.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +19,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -19,7 +27,6 @@
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
@@ -47,14 +54,14 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">SimpleContacts</a>
                 </div>
-                 <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Contacts">Contacts</a></li>
-                            </ul>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="~/Contacts">Contacts</a></li>
+                    </ul>
 
                 </div>
             </div>
-            </div>
+        </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

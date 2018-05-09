@@ -21,7 +21,7 @@ namespace SimpleContacts
 
             Page.Validate(); //Server side validation
             if (Page.IsValid)
-            {
+            {                       //string command to be used when connected to the database (uses placeholders for parameter)
                 string command = "INSERT INTO Contacts([FirstName],[LastName],[Note], [StreetAddress], [CityAddress], [StateAddress], [ZipAddress], [Email],[Phone]) " +
                     "values(@FirstName, @LastName, @Note,@StreetAddress, @CityAddress, @StateAddress, @ZipAddress,@Email,@Phone)";
 
@@ -34,7 +34,7 @@ namespace SimpleContacts
                     using (SqlCommand cmd = new SqlCommand(command, connect))
                     {
 
-
+                        //create parameter objects
                         cmd.Parameters.AddWithValue("@FirstName", FirstNameID.Text);
                         cmd.Parameters.AddWithValue("@LastName", LastNameID.Text);
                         cmd.Parameters.AddWithValue("@Note", NoteID.Text);
@@ -45,7 +45,7 @@ namespace SimpleContacts
                         cmd.Parameters.AddWithValue("@Email", EmailID.Text);
                         cmd.Parameters.AddWithValue("@Phone", PhoneID.Text);
                         connect.Open();
-                        cmd.ExecuteNonQuery();
+                        ////cmd.ExecuteNonQuery();   //not using dataset
                         connect.Close();
                     }
 
