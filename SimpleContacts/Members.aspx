@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Members.aspx.cs" Inherits="SimpleContacts.Members" %>
 
-
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p>Groups Members:</p>
-    <p>
-        &nbsp;</p>
+    
+      <p>  &nbsp;</p>
     <p>&nbsp;</p>
-    <p>
+   
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ContactID" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="ContactID" HeaderText="ContactID" InsertVisible="False" ReadOnly="True" SortExpression="ContactID" />
@@ -48,7 +48,8 @@
         </Columns>
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [Contacts]"
-        UpdateCommand="UPDATE Contacts SET GroupId=@GroupId WHERE ContactId=@ContactId"></asp:SqlDataSource>
+        UpdateCommand="UPDATE Contacts SET GroupId=@GroupId WHERE ContactId=@ContactId">  
+    </asp:SqlDataSource>
        
     <br />
     <br />

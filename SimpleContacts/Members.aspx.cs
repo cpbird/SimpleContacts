@@ -13,11 +13,13 @@ namespace SimpleContacts
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-             string GroupId = Request.QueryString["GroupId"];
+               String GroupId = Request.QueryString["GroupId"];
+            SqlDataSource2.UpdateCommand = "UPDATE Contacts SET GroupId=" + GroupId; 
+
         }
 
 
-      
-        }
+
+    }
     }
 
