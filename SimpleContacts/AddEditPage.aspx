@@ -28,6 +28,7 @@
             </td>
             <td>
       <asp:TextBox ID="PhoneID" runat="server"></asp:TextBox>
+                <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="PhoneID" ErrorMessage="Please enter 10 digit number." MaximumValue="10" MinimumValue="10">*</asp:RangeValidator>
             </td>
         </tr>
         <tr>
@@ -106,6 +107,7 @@
             </td>
             <td>
       <asp:TextBox ID="ZipID" runat="server"></asp:TextBox>
+                <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="ZipID" ErrorMessage="Please enter 6 digit zip." MaximumValue="6" MinimumValue="6">*</asp:RangeValidator>
             </td>
         </tr>
         <tr>

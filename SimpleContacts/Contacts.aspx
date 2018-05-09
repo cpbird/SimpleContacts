@@ -33,21 +33,23 @@
         <br />
 
         <p class="lead">
-            <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None"  Width="100%"  >
-                <AlternatingRowStyle BackColor="White" />
+            <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None"  Width="100%" CssClass="myGrid" >
+                <AlternatingRowStyle BackColor="White"/>
                 <Columns>
                     <asp:TemplateField ShowHeader="False">
                         <EditItemTemplate>
+                            
                             <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
                             &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
                         </EditItemTemplate>
+                        
                         <ItemTemplate>
                             <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" Width="5%"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this contact');"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this contact');"></asp:LinkButton>
                         </ItemTemplate>
                         <ItemStyle Width="5%" />
                     </asp:TemplateField>
@@ -68,14 +70,21 @@
                     <asp:BoundField DataField="StateAddress" HeaderText="State" SortExpression="StateAddress" ItemStyle-Width="5%">
 <ItemStyle Width="5%"></ItemStyle>
                     </asp:BoundField>
-                    <asp:BoundField DataField="ZipAddress" HeaderText="Zip Code" SortExpression="ZipAddress" ItemStyle-Width="5%" >
-<ItemStyle Width="5%"></ItemStyle>
-                    </asp:BoundField>
+                    <asp:TemplateField HeaderText="Zip Code" SortExpression="ZipAddress">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("ZipAddress") %>'></asp:TextBox>
+                            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Enter 6 digit zip" MaximumValue="6" MinimumValue="6">*</asp:RangeValidator>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("ZipAddress") %>'></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle Width="5%" />
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Email" SortExpression="Email" ItemStyle-Width="10%">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox1" ErrorMessage="Enter email"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="TextBox1" ErrorMessage="Enter valid email"></asp:RegularExpressionValidator>
+                            <asp:TextBox ID="EmailId" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="EmailId" ErrorMessage="Enter email">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="EmailId" ErrorMessage="Enter valid email" EnableClientScript="False" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
@@ -83,9 +92,16 @@
 
 <ItemStyle Width="10%"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" ItemStyle-Width="10%" >
-<ItemStyle Width="10%"></ItemStyle>
-                    </asp:BoundField>
+                    <asp:TemplateField HeaderText="Phone" SortExpression="Phone">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Phone") %>'></asp:TextBox>
+                            <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="Enter 10 digit number" MaximumValue="10" MinimumValue="10">*</asp:RangeValidator>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Phone") %>'></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle Width="10%" />
+                    </asp:TemplateField>
                     <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" ItemStyle-Width="10%">
 <ItemStyle Width="10%"></ItemStyle>
                     </asp:BoundField>
@@ -105,6 +121,9 @@
                 <SortedDescendingCellStyle BackColor="#D4DFE1" />
                 <SortedDescendingHeaderStyle BackColor="#15524A" />
             </asp:GridView>
+        </p>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+        <p>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" 
                 SelectCommand="SELECT * FROM Contacts"
                 UpdateCommand="Update Contacts SET FirstName=@FirstName, LastName=@LastName, Note=@Note, StreetAddress=@StreetAddress, 
