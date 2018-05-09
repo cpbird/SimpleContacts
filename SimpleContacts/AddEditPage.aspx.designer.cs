@@ -103,13 +103,13 @@ namespace SimpleContacts {
         protected global::System.Web.UI.WebControls.TextBox PhoneID;
         
         /// <summary>
-        /// RangeValidator1 control.
+        /// RegularExpressionValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
         
         /// <summary>
         /// StreetLabel control.
@@ -184,13 +184,13 @@ namespace SimpleContacts {
         protected global::System.Web.UI.WebControls.TextBox ZipID;
         
         /// <summary>
-        /// RangeValidator2 control.
+        /// RegularExpressionValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator RangeValidator2;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
         
         /// <summary>
         /// NoteLabel control.

@@ -73,7 +73,7 @@
                     <asp:TemplateField HeaderText="Zip Code" SortExpression="ZipAddress">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("ZipAddress") %>'></asp:TextBox>
-                            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Enter 6 digit zip" MaximumValue="6" MinimumValue="6">*</asp:RangeValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TextBox1" ErrorMessage="Enter valid zip code." ValidationExpression="\d{5}(-\d{4})?">*</asp:RegularExpressionValidator>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("ZipAddress") %>'></asp:Label>
@@ -95,7 +95,7 @@
                     <asp:TemplateField HeaderText="Phone" SortExpression="Phone">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Phone") %>'></asp:TextBox>
-                            <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="Enter 10 digit number" MaximumValue="10" MinimumValue="10">*</asp:RangeValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="TextBox2" ErrorMessage="Enter valid phone number" ValidationExpression="((\(\d{3}\) ?)|(\d{3}))?\d{3}\d{4}">*</asp:RegularExpressionValidator>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("Phone") %>'></asp:Label>

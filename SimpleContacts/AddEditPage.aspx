@@ -28,7 +28,7 @@
             </td>
             <td>
       <asp:TextBox ID="PhoneID" runat="server"></asp:TextBox>
-                <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="PhoneID" ErrorMessage="Please enter 10 digit number." MaximumValue="10" MinimumValue="10">*</asp:RangeValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="PhoneID" ErrorMessage="Enter valid phone number." ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}">*</asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -107,7 +107,7 @@
             </td>
             <td>
       <asp:TextBox ID="ZipID" runat="server"></asp:TextBox>
-                <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="ZipID" ErrorMessage="Please enter 6 digit zip." MaximumValue="6" MinimumValue="6">*</asp:RangeValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="ZipID" ErrorMessage="Enter a valid zip code." ValidationExpression="\d{5}(-\d{4})?">*</asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
