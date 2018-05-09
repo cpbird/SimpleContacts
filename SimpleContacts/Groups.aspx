@@ -11,7 +11,7 @@
         <asp:Button ID="GroupButtonAdd" runat="server" Text="Add" OnClick="GroupButtonAdd_Click" />
     </p>
     <p>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+       <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:HyperLinkField DataTextField="GroupDescription" HeaderText="Group" DataNavigateUrlFields="GroupId" DataNavigateUrlFormatString="Members.aspx?GroupId={0}" />
             </Columns>

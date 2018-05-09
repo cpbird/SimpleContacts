@@ -14,7 +14,7 @@ namespace SimpleContacts
         protected void Page_Load(object sender, EventArgs e)
         {
                String GroupId = Request.QueryString["GroupId"];
-            SqlDataSource2.UpdateCommand = "UPDATE Contacts SET GroupId=" + GroupId; 
+            SqlDataSource2.InsertCommand = "INSERT INTO ContactMapping([GroupId], [ContactID]) Values("+GroupId+", @ContactId) WHERE ContactID=@ContactId";
 
         }
 
