@@ -13,15 +13,17 @@
      <asp:Label runat="server" Text="Last :" ID="LastNameLabel"></asp:Label>
             </td>
             <td>
-      <asp:TextBox ID="LastNameID" runat="server"></asp:TextBox>
+      <asp:TextBox ID="LastNameID" runat="server" ></asp:TextBox>
             </td>
             <td>
              <asp:Label runat="server" Text="Email :" ID="EmailLabel"></asp:Label>
             </td>
             <td>
-      <asp:TextBox ID="EmailID" runat="server"></asp:TextBox>
+      <asp:TextBox ID="EmailID" runat="server" ></asp:TextBox>
             </td>
             <td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="EmailID" ErrorMessage="Please enter an email.">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="EmailID" ErrorMessage="Enter a valid email." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
              <asp:Label runat="server" Text="Phone :" ID="PhoneLabel"></asp:Label>
             </td>
             <td>
@@ -33,7 +35,7 @@
              <asp:Label runat="server" Text="Street :" ID="StreetLabel"></asp:Label>
             </td>
             <td>
-      <asp:TextBox ID="StreetID" runat="server"></asp:TextBox>
+      <asp:TextBox ID="StreetID" runat="server" > </asp:TextBox>
             </td>
             <td>
                 <asp:Label runat="server" Text="State: " ID="StateLabel"></asp:Label>
@@ -113,7 +115,9 @@
         </tr>
         <tr>
             <td>
-            <asp:TextBox ID="NoteID" runat="server"></asp:TextBox>
+            <asp:TextBox ID="NoteID" runat="server"  ></asp:TextBox>
+                <br />
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                 </td>
         </tr>
         <tr>
