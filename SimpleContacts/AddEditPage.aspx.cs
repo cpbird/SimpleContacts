@@ -45,7 +45,7 @@ namespace SimpleContacts
                         cmd.Parameters.AddWithValue("@Email", EmailID.Text);
                         cmd.Parameters.AddWithValue("@Phone", PhoneID.Text);
                         connect.Open();
-                        ////cmd.ExecuteNonQuery();   //not using dataset
+                        cmd.ExecuteNonQuery();   
                         connect.Close();
                     }
 
