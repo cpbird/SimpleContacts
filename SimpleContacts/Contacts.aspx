@@ -33,7 +33,8 @@
         <br />
 
         <p class="lead">
-            <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+            <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None"  Width="100%"  >
+                <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:TemplateField ShowHeader="False">
                         <EditItemTemplate>
@@ -41,18 +42,36 @@
                             &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" Width="5%"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:CommandField ShowDeleteButton="True" />
-                    <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
-                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
-                    <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" />
-                    <asp:BoundField DataField="StreetAddress" HeaderText="StreetAddress" SortExpression="StreetAddress" />
-                    <asp:BoundField DataField="CityAddress" HeaderText="CityAddress" SortExpression="CityAddress" />
-                    <asp:BoundField DataField="StateAddress" HeaderText="StateAddress" SortExpression="StateAddress" />
-                    <asp:BoundField DataField="ZipAddress" HeaderText="ZipAddress" SortExpression="ZipAddress" />
-                    <asp:TemplateField HeaderText="Email" SortExpression="Email">
+                    <asp:TemplateField ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this contact');"></asp:LinkButton>
+                        </ItemTemplate>
+                        <ItemStyle Width="5%" />
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" ItemStyle-Width="10%" >
+<ItemStyle Width="10%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="LastName" HeaderText="Last" SortExpression="LastName" ItemStyle-Width="10%" >
+                    
+<ItemStyle Width="10%"></ItemStyle>
+                    </asp:BoundField>
+                    
+                    <asp:BoundField DataField="StreetAddress" HeaderText="Street Address" SortExpression="StreetAddress" ItemStyle-Width="30%">
+<ItemStyle Width="30%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="CityAddress" HeaderText="City" SortExpression="CityAddress" ItemStyle-Width="5%">
+<ItemStyle Width="5%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="StateAddress" HeaderText="State" SortExpression="StateAddress" ItemStyle-Width="5%">
+<ItemStyle Width="5%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="ZipAddress" HeaderText="Zip Code" SortExpression="ZipAddress" ItemStyle-Width="5%" >
+<ItemStyle Width="5%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:TemplateField HeaderText="Email" SortExpression="Email" ItemStyle-Width="10%">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox1" ErrorMessage="Enter email"></asp:RequiredFieldValidator>
@@ -61,13 +80,30 @@
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                         </ItemTemplate>
+
+<ItemStyle Width="10%"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+                    <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" ItemStyle-Width="10%" >
+<ItemStyle Width="10%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Note" HeaderText="Note" SortExpression="Note" ItemStyle-Width="10%">
+<ItemStyle Width="10%"></ItemStyle>
+                    </asp:BoundField>
                 </Columns>
+                <EditRowStyle BackColor="#7C6F57" />
                 <EmptyDataTemplate>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Email" ErrorMessage="Please enter email"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Email" ErrorMessage="Enter valid email"></asp:RegularExpressionValidator>
                 </EmptyDataTemplate>
+                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#E3EAEB" />
+                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                <SortedAscendingHeaderStyle BackColor="#246B61" />
+                <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                <SortedDescendingHeaderStyle BackColor="#15524A" />
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" 
                 SelectCommand="SELECT * FROM Contacts"
